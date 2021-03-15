@@ -7,7 +7,7 @@
 // target:  基本用法
 //
 
-import 'package:city_pickers_example/meta/province_nm.dart';
+import '../meta/province_nm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:city_pickers/city_pickers.dart';
@@ -296,7 +296,7 @@ class _ShowCityPickerState extends State<ShowCityPicker> {
             AttrItemContainer(title: '主题选择', editor: _buildTheme()),
             AttrItemContainer(
                 title: '选择结果', editor: Text("${result.toString()}")),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () async {
                 print("locationCode $resultAttr");
                 Result tempResult = await CityPickers.showCityPicker(

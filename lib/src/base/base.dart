@@ -347,7 +347,7 @@ class _BaseView extends State<BaseView> {
           children: <Widget>[
             new Row(
               children: <Widget>[
-                FlatButton(
+                TextButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -359,7 +359,7 @@ class _BaseView extends State<BaseView> {
                         ),
                       ),
                 ),
-                FlatButton(
+                TextButton(
                   onPressed: () {
                     Navigator.pop(context, _buildResult());
                   },
@@ -519,6 +519,7 @@ class _MyCityPickerState extends State<_MyCityPicker> {
               itemExtent: widget.itemExtent ?? 40.0,
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               scrollController: widget.controller,
+              selectionOverlay:PickerLinesSelectionOverlay(),
               onSelectedItemChanged: (index) {
                 widget.changed(index);
               },
@@ -595,5 +596,26 @@ class _WrapLayout extends SingleChildLayoutDelegate {
   @override
   bool shouldRelayout(_WrapLayout oldDelegate) {
     return progress != oldDelegate.progress;
+  }
+}
+/// dataPicker 选中高亮背景
+class PickerLinesSelectionOverlay extends StatelessWidget {
+  final Color dividerColor;
+
+  const PickerLinesSelectionOverlay({Key key, this.dividerColor}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(
+        left: 9,
+        right: 9,
+      ),
+      decoration: ShapeDecoration(
+        shape: Border(
+          top: BorderSide(color: dividerColor ?? Theme.of(context).dividerColor, width: 1),
+          bottom: BorderSide(color: dividerColor ?? Theme.of(context).dividerColor, width: 1),
+        ),
+      ),
+    );
   }
 }
